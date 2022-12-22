@@ -37,12 +37,11 @@ include 'components/head.php';
 
           if (isset($_POST['submit'])) {
             $nama = $_POST['nama'];
-            $ram = $_POST['ram'];
+            $ram = substr($_POST['ram'], 1, 1);
             $kamera = substr($_POST['kamera'], 1, 1);
             $baterai = substr($_POST['baterai'], 1, 1);
             $processor = substr($_POST['processor'], 1, 1);
             $harga = substr($_POST['harga'], 1, 1);
-            $kelebihan = substr($_POST['kelebihan'], 1, 1);
             if ($nama == "" || $ram == "" || $kamera == "" || $baterai == "" || $processor == "" || $harga == "") {
               echo "<script>
               alert('Tolong Lengkapi Data yang Ada!');
@@ -59,14 +58,13 @@ include 'components/head.php';
               } else {
                 //insert name
                 $sql = "INSERT INTO saw_penilaian(
-                nama,peringkat,ukuran,unduhan,aktif,manfaat,kelebihan)
+                nama,ram,kamera,baterai,processor,harga)
                 values ('" . $nama . "',
                 '" . $ram . "',
                 '" . $kamera . "',
                 '" . $baterai . "',
                 '" . $processor . "',
-                '" . $harga . "',
-                '" . $kelebihan . "')";
+                '" . $harga . "')";
                 $hasil = $conn->query($sql);
                 echo "<script>
                 alert('Penilaian Berhasil di Tambahkan!');
@@ -190,7 +188,6 @@ include 'components/head.php';
                     <td align="center"><?= $row[3] ?></td>
                     <td align="center"><?= $row[4] ?></td>
                     <td align="center"><?= $row[5] ?></td>
-                    <td align="center"><?= $row[6] ?></td>
                     <td>
                       <div class="btn-group">
                         <a class="btn btn-danger" href="penilaian_hapus.php?nama=<?= $row[0] ?>">

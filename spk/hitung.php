@@ -66,7 +66,6 @@ include 'components/head.php';
                                             <td align="center"><?= $row[3] ?></td>
                                             <td align="center"><?= $row[4] ?></td>
                                             <td align="center"><?= $row[5] ?></td>
-                                            <td align="center"><?= $row[6] ?></td>
                                         </tr>
                                 <?php }
                                 } else {
@@ -124,10 +123,6 @@ include 'components/head.php';
                                     $hasil = $conn->query($sql);
                                     $row = $hasil->fetch_row();
                                     $C5 = $row[5];
-                                    $sql = "SELECT*FROM saw_penilaian ORDER BY kelebihan DESC";
-                                    $hasil = $conn->query($sql);
-                                    $row = $hasil->fetch_row();
-                                    $C6 = $row[6];
                                     // Biaya
                                     $sql = "SELECT*FROM saw_penilaian ORDER BY harga ASC";
                                     $hasil = $conn->query($sql);
@@ -152,7 +147,6 @@ include 'components/head.php';
                                             <td align="center"><?= round($row[3] / $C3, 2) ?></td>
                                             <td align="center"><?= round($row[4] / $C4, 2) ?></td>
                                             <td align="center"><?= round($row[5] / $C5, 2) ?></td>
-                                            <td align="center"><?= round($row[6] / $C6, 2) ?></td>
                                             <td align="center"><?= round($C2 / $row[2], 2) ?></td>
                                         </tr>
                                 <?php }
@@ -195,7 +189,6 @@ include 'components/head.php';
                                     $B3 = $row[3];
                                     $B4 = $row[4];
                                     $B5 = $row[5];
-                                    $B6 = $row[6];
                                 }
                                 $sql = "TRUNCATE TABLE saw_perankingan";
                                 $hasil = $conn->query($sql);
@@ -209,8 +202,7 @@ include 'components/head.php';
                                             (($C2 / $row[2]) * $B2) +
                                             (($row[3] / $C3) * $B3) +
                                             (($row[4] / $C4) * $B4) +
-                                            (($row[5] / $C5) * $B5) +
-                                            (($row[6] / $C6) * $B6), 3);
+                                            (($row[5] / $C5) * $B5), 3);
                                         $nama = $row[0];
                                         $sql1 = "INSERT INTO saw_perankingan(nama,nilai_akhir) VALUES ('" . $nama . "','" . $nilai . "')";
                                         $hasil1 = $conn->query($sql1);

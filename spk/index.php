@@ -129,11 +129,11 @@ include 'components/head.php';
                   <tr>
                     <td><?php echo $b = $b + 1; ?></td>
                     <td><?= $row[0] ?></td>
-                    <td><?= $row[1] ?></td>
-                    <td><?= $row[2] ?></td>
-                    <td><?= $row[3] ?></td>
+                    <td><?= $row[1] ?> GB</td>
+                    <td><?= $row[2] ?> MP</td>
+                    <td><?= $row[3] ?> mAh</td>
                     <td><?= $row[4] ?></td>
-                    <td><?= $row[5] ?></td>
+                    <td>Rp. <?= $row[5] ?></td>
                     <td>
                       <div class="btn-group">
                         <a class="btn btn-success" href="alt_ubah.php?nama=<?= $row[0] ?>"><i class="fa fa-edit"></i></a>

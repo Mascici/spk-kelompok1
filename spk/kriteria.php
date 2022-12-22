@@ -38,14 +38,12 @@ include 'components/head.php';
               var c = (document.getElementById("baterai_param").value).substring(0, 1);
               var d = (document.getElementById("processor_param").value).substring(0, 1);
               var e = (document.getElementById("harga_param").value).substring(0, 1);
-              var f = (document.getElementById("kelebihan_param").value).substring(0, 1);
-              var total = Number(a) + Number(b) + Number(c) + Number(d) + Number(e) + Number(f);
+              var total = Number(a) + Number(b) + Number(c) + Number(d) + Number(e);
               document.getElementById("ram").value = (Number(a) / total).toFixed(2);
               document.getElementById("kamera").value = (Number(b) / total).toFixed(2);
               document.getElementById("baterai").value = (Number(c) / total).toFixed(2);
               document.getElementById("processor").value = (Number(d) / total).toFixed(2);
               document.getElementById("harga").value = (Number(e) / total).toFixed(2);
-              document.getElementById("kelebihan").value = (Number(f) / total).toFixed(2);
             }
           </script>
           <!--END SCRIPT HITUNG-->
@@ -62,13 +60,11 @@ include 'components/head.php';
             $baterai = $_POST['baterai'];
             $processor = $_POST['processor'];
             $harga = $_POST['harga'];
-            $kelebihan = $_POST['kelebihan'];
             if (($ram == "") or
               ($kamera == "") or
               ($baterai == "") or
               ($processor == "") or
-              ($harga == "") or
-              ($kelebihan == "")
+              ($harga == "")
             ) {
               echo "<script>
               alert('Tolong Lengkapi Data yang Ada!');
@@ -83,13 +79,12 @@ include 'components/head.php';
                 </script>";
               } else {
                 $sql = "INSERT INTO saw_kriteria(
-                  ram, kamera, baterai, processor, harga, kelebihan)
+                  ram, kamera, baterai, processor, harga)
                   values ('" . $ram . "',
                   '" . $kamera . "',
                   '" . $baterai . "',
                   '" . $processor . "',
-                  '" . $harga . "',
-                  '" . $kelebihan . "')";
+                  '" . $harga . "')";
                 $hasil = $conn->query($sql);
                 echo "<script>
                 alert('Bobot Berhasil di Inputkan!');
@@ -172,6 +167,7 @@ include 'components/head.php';
                 <input type="text" class="form-control" name="processor" id="processor">
               </div>
             </div>
+            
             <div class="form-group row">
               <label class="col-sm-2 col-form-label">Harga</label>
               <div class="col-sm-3">
@@ -185,21 +181,6 @@ include 'components/head.php';
               </div>
               <div class="col-sm-1">
                 <input type="text" class="form-control" name="harga" id="harga">
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-sm-2 col-form-label">Kelebihan</label>
-              <div class="col-sm-3">
-                <select class="form-control" name="kelebihan_param" id="kelebihan_param">
-                  <option>1. Sangat Rendah</option>
-                  <option>2. Rendah</option>
-                  <option>3. Cukup</option>
-                  <option>4. Tinggi</option>
-                  <option>5. Sangat Tinggi</option>
-                </select>
-              </div>
-              <div class="col-sm-1">
-                <input type="text" class="form-control" name="kelebihan" id="kelebihan">
               </div>
               <div class="col-sm-2">
                 <button class="btn btn-outline-success" type="button" id="hitung" onclick="fungsiku()" name="hitung"><i class="fa fa-calculator"></i> Hitung</button>
@@ -217,7 +198,6 @@ include 'components/head.php';
                 <th><i class="fa fa-arrow-down"></i> Baterai</th>
                 <th><i class="fa fa-arrow-down"></i> Processor</th>
                 <th><i class="fa fa-arrow-down"></i> Harga</th>
-                <th><i class="fa fa-arrow-down"></i> Kelebihan</th>
                 <th><i class="fa fa-cogs"></i> Aksi</th>
               </tr>
             </thead>
@@ -235,7 +215,6 @@ include 'components/head.php';
                   <td Align="center"><?= $row[3] ?></td>
                   <td Align="center"><?= $row[4] ?></td>
                   <td Align="center"><?= $row[5] ?></td>
-                  <td Align="center"><?= $row[6] ?></td>
                   <td>
                     <div class="btn-group">
                       <a class="btn btn-danger" href="kriteria_hapus.php?id=<?= $row[0] ?>"><i class="fa fa-close"></i></a>
