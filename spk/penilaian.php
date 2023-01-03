@@ -38,11 +38,15 @@ include 'components/head.php';
           if (isset($_POST['submit'])) {
             $nama = $_POST['nama'];
             $ram = substr($_POST['ram'], 1, 1);
-            $kamera = substr($_POST['kamera'], 1, 1);
+            $rom = substr($_POST['rom'], 1, 1);
+            $layar = substr($_POST['layar'], 1, 1);
+            $kamerabl = substr($_POST['kamerabl'], 1, 1);
+            $kameradp = substr($_POST['kameradp'], 1, 1);
             $baterai = substr($_POST['baterai'], 1, 1);
             $processor = substr($_POST['processor'], 1, 1);
+            $koneksi = substr($_POST['koneksi'], 1, 1);
             $harga = substr($_POST['harga'], 1, 1);
-            if ($nama == "" || $ram == "" || $kamera == "" || $baterai == "" || $processor == "" || $harga == "") {
+            if ($nama == "" || $ram == "" || $rom == "" || $layar == "" || $kamerabl == "" || $kameradp == "" || $baterai == "" || $processor == "" || $koneksi == "" || $harga == "") {
               echo "<script>
               alert('Tolong Lengkapi Data yang Ada!');
               </script>";
@@ -58,12 +62,16 @@ include 'components/head.php';
               } else {
                 //insert name
                 $sql = "INSERT INTO saw_penilaian(
-                nama,ram,kamera,baterai,processor,harga)
+                nama,ram,rom,layar,kamerabl,kameradp,baterai,processor,koneksi,harga)
                 values ('" . $nama . "',
                 '" . $ram . "',
-                '" . $kamera . "',
+                '" . $rom . "',
+                '" . $layar . "',
+                '" . $kamerabl . "',
+                '" . $kameradp . "',
                 '" . $baterai . "',
                 '" . $processor . "',
+                '" . $koneksi . "',
                 '" . $harga . "')";
                 $hasil = $conn->query($sql);
                 echo "<script>
@@ -107,26 +115,62 @@ include 'components/head.php';
               </div>
             </div>
             <div class="form-group row">
-              <label class="col-sm-2 col-form-label">Kamera</label>
+              <label class="col-sm-2 col-form-label">ROM</label>
               <div class="col-sm-4">
-                <select class=" form-control" name="kamera">
-                  <option>(1) Sangat Sedikit</option>
-                  <option>(2) Sedikit</option>
+                <select class=" form-control" name="rom">
+                  <option>(1) Sangat Ringan</option>
+                  <option>(2) Ringan</option>
                   <option>(3) Sedang</option>
-                  <option>(4) Banyak</option>
-                  <option>(5) Sangat Banyak</option>
+                  <option>(4) Berat</option>
+                  <option>(5) Sangat Berat</option>
                 </select>
               </div>
             </div>
             <div class="form-group row">
-              <label class="col-sm-2 col-form-label">Baterai</label>
+              <label class="col-sm-2 col-form-label">LAYAR</label>
+              <div class="col-sm-4">
+                <select class=" form-control" name="layar">
+                  <option>(1) Sangat Ringan</option>
+                  <option>(2) Ringan</option>
+                  <option>(3) Sedang</option>
+                  <option>(4) Berat</option>
+                  <option>(5) Sangat Berat</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label">KAMERA BELAKANG</label>
+              <div class="col-sm-4">
+                <select class=" form-control" name="kamerabl">
+                  <option>(1) Sangat Ringan</option>
+                  <option>(2) Ringan</option>
+                  <option>(3) Sedang</option>
+                  <option>(4) Berat</option>
+                  <option>(5) Sangat Berat</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label">KAMERA DEPAN</label>
+              <div class="col-sm-4">
+                <select class=" form-control" name="kameradp">
+                  <option>(1) Sangat Ringan</option>
+                  <option>(2) Ringan</option>
+                  <option>(3) Sedang</option>
+                  <option>(4) Berat</option>
+                  <option>(5) Sangat Berat</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label">BATERAI</label>
               <div class="col-sm-4">
                 <select class=" form-control" name="baterai">
-                  <option>(1) Sangat Sedikit</option>
-                  <option>(2) Sedikit</option>
+                  <option>(1) Sangat Ringan</option>
+                  <option>(2) Ringan</option>
                   <option>(3) Sedang</option>
-                  <option>(4) Banyak</option>
-                  <option>(5) Sangat Banyak</option>
+                  <option>(4) Berat</option>
+                  <option>(5) Sangat Berat</option>
                 </select>
               </div>
             </div>
@@ -134,11 +178,23 @@ include 'components/head.php';
               <label class="col-sm-2 col-form-label">Processor</label>
               <div class="col-sm-4">
                 <select class=" form-control" name="processor">
-                  <option>(1) Sangat Sedikit</option>
-                  <option>(2) Sedikit</option>
+                  <option>(1) Sangat Ringan</option>
+                  <option>(2) Ringan</option>
                   <option>(3) Sedang</option>
-                  <option>(4) Banyak</option>
-                  <option>(5) Sangat Banyak</option>
+                  <option>(4) Berat</option>
+                  <option>(5) Sangat Berat</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label">Koneksi</label>
+              <div class="col-sm-4">
+                <select class=" form-control" name="koneksi">
+                  <option>(1) Sangat Ringan</option>
+                  <option>(2) Ringan</option>
+                  <option>(3) Sedang</option>
+                  <option>(4) Berat</option>
+                  <option>(5) Sangat Berat</option>
                 </select>
               </div>
             </div>
@@ -146,11 +202,11 @@ include 'components/head.php';
               <label class="col-sm-2 col-form-label">Harga</label>
               <div class="col-sm-4">
                 <select class=" form-control" name="harga">
-                  <option>(1) Sangat Sedikit</option>
-                  <option>(2) Sedikit</option>
+                  <option>(1) Sangat Ringan</option>
+                  <option>(2) Ringan</option>
                   <option>(3) Sedang</option>
-                  <option>(4) Banyak</option>
-                  <option>(5) Sangat Banyak</option>
+                  <option>(4) Berat</option>
+                  <option>(5) Sangat Berat</option>
                 </select>
               </div>
             </div>
@@ -164,9 +220,13 @@ include 'components/head.php';
                 <th><i class="fa fa-arrow-down"></i> No</th>
                 <th><i class="fa fa-arrow-down"></i> Alternatif</th>
                 <th><i class="fa fa-arrow-down"></i> RAM</th>
-                <th><i class="fa fa-arrow-down"></i> Kamera</th>
+                <th><i class="fa fa-arrow-down"></i> ROM</th>
+                <th><i class="fa fa-arrow-down"></i> layar</th>
+                <th><i class="fa fa-arrow-down"></i> Kamera Belakang</th>
+                <th><i class="fa fa-arrow-down"></i> Kamera Depan</th>
                 <th><i class="fa fa-arrow-down"></i> Baterai</th>
                 <th><i class="fa fa-arrow-down"></i> Processor</th>
+                <th><i class="fa fa-arrow-down"></i> Koneksi</th>
                 <th><i class="fa fa-arrow-down"></i> harga</th>
                 <th><i class="fa fa-cogs"></i> Aksi</th>
               </tr>
@@ -188,6 +248,10 @@ include 'components/head.php';
                     <td align="center"><?= $row[3] ?></td>
                     <td align="center"><?= $row[4] ?></td>
                     <td align="center"><?= $row[5] ?></td>
+                    <td align="center"><?= $row[6] ?></td>
+                    <td align="center"><?= $row[7] ?></td>
+                    <td align="center"><?= $row[8] ?></td>
+                    <td align="center"><?= $row[9] ?></td>
                     <td>
                       <div class="btn-group">
                         <a class="btn btn-danger" href="penilaian_hapus.php?nama=<?= $row[0] ?>">

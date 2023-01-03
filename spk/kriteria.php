@@ -34,16 +34,24 @@ include 'components/head.php';
           <script>
             function fungsiku() {
               var a = (document.getElementById("ram_param").value).substring(0, 1);
-              var b = (document.getElementById("kamera_param").value).substring(0, 1);
-              var c = (document.getElementById("baterai_param").value).substring(0, 1);
-              var d = (document.getElementById("processor_param").value).substring(0, 1);
-              var e = (document.getElementById("harga_param").value).substring(0, 1);
-              var total = Number(a) + Number(b) + Number(c) + Number(d) + Number(e);
-              document.getElementById("ram").value = (Number(a) / total).toFixed(2);
-              document.getElementById("kamera").value = (Number(b) / total).toFixed(2);
-              document.getElementById("baterai").value = (Number(c) / total).toFixed(2);
-              document.getElementById("processor").value = (Number(d) / total).toFixed(2);
-              document.getElementById("harga").value = (Number(e) / total).toFixed(2);
+              var b = (document.getElementById("rom_param").value).substring(0, 1);
+              var c = (document.getElementById("layar_param").value).substring(0, 1);
+              var d = (document.getElementById("kamerabl_param").value).substring(0, 1);
+              var e = (document.getElementById("kameradp_param").value).substring(0, 1);
+              var f = (document.getElementById("baterai_param").value).substring(0, 1);
+              var g = (document.getElementById("processor_param").value).substring(0, 1);
+              var h = (document.getElementById("koneksi_param").value).substring(0, 1);
+              var i = (document.getElementById("harga_param").value).substring(0, 1);
+              var total = Number(a) + Number(b) + Number(c) + Number(d) + Number(e) + Number(f) + Number(g) + Number(h) + Number(i);
+              document.getElementById("ram").value = (Number(a) / total).toFixed(2); //benefit
+              document.getElementById("rom").value = (Number(b) / total).toFixed(2); //benefit
+              document.getElementById("layar").value = (Number(c) / total).toFixed(2); //benefit
+              document.getElementById("kamerabl").value = (Number(d) / total).toFixed(2); //benefit
+              document.getElementById("kameradp").value = (Number(e) / total).toFixed(2); //benefit
+              document.getElementById("baterai").value = (Number(f) / total).toFixed(2); //benefit
+              document.getElementById("processor").value = (Number(g) / total).toFixed(2); //benefit
+              document.getElementById("koneksi").value = (Number(h) / total).toFixed(2); //benefit
+              document.getElementById("harga").value = (Number(i) / total).toFixed(2); //cost
             }
           </script>
           <!--END SCRIPT HITUNG-->
@@ -56,14 +64,22 @@ include 'components/head.php';
 
           if (isset($_POST['submit'])) {
             $ram = $_POST['ram'];
-            $kamera = $_POST['kamera'];
+            $rom = $_POST['rom'];
+            $layar = $_POST['layar'];
+            $kamerabl = $_POST['kamerabl'];
+            $kameradp = $_POST['kameradp'];
             $baterai = $_POST['baterai'];
             $processor = $_POST['processor'];
+            $koneksi = $_POST['koneksi'];
             $harga = $_POST['harga'];
             if (($ram == "") or
-              ($kamera == "") or
+              ($rom == "") or
+              ($layar == "") or
+              ($kamerabl == "") or
+              ($kameradp == "") or
               ($baterai == "") or
               ($processor == "") or
+              ($koneksi == "") or
               ($harga == "")
             ) {
               echo "<script>
@@ -79,11 +95,15 @@ include 'components/head.php';
                 </script>";
               } else {
                 $sql = "INSERT INTO saw_kriteria(
-                  ram, kamera, baterai, processor, harga)
+                  ram, rom, layar, kamerabl, kameradp, baterai, processor, koneksi, harga)
                   values ('" . $ram . "',
-                  '" . $kamera . "',
+                  '" . $rom . "',
+                  '" . $layar . "',
+                  '" . $kamerabl . "',
+                  '" . $kameradp . "',
                   '" . $baterai . "',
                   '" . $processor . "',
+                  '" . $koneksi . "',
                   '" . $harga . "')";
                 $hasil = $conn->query($sql);
                 echo "<script>
@@ -123,9 +143,9 @@ include 'components/head.php';
               </div>
             </div>
             <div class="form-group row">
-              <label class="col-sm-2 col-form-label">Kamera</label>
+              <label class="col-sm-2 col-form-label">Rom</label>
               <div class="col-sm-3">
-                <select class="form-control" name="kamera_param" id="kamera_param">
+                <select class="form-control" name="rom_param" id="rom_param">
                   <option>1. Sangat Rendah</option>
                   <option>2. Rendah</option>
                   <option>3. Cukup</option>
@@ -134,7 +154,52 @@ include 'components/head.php';
                 </select>
               </div>
               <div class="col-sm-1">
-                <input type="text" class="form-control" name="kamera" id="kamera">
+                <input type="text" class="form-control" name="rom" id="rom">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label">Layar</label>
+              <div class="col-sm-3">
+                <select class="form-control" name="layar_param" id="layar_param">
+                  <option>1. Sangat Rendah</option>
+                  <option>2. Rendah</option>
+                  <option>3. Cukup</option>
+                  <option>4. Tinggi</option>
+                  <option>5. Sangat Tinggi</option>
+                </select>
+              </div>
+              <div class="col-sm-1">
+                <input type="text" class="form-control" name="layar" id="layar">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label">Kamera Belakang</label>
+              <div class="col-sm-3"> 
+                <select class="form-control" name="kamerabl_param" id="kamerabl_param">
+                  <option>1. Sangat Rendah</option>
+                  <option>2. Rendah</option>
+                  <option>3. Cukup</option>
+                  <option>4. Tinggi</option>
+                  <option>5. Sangat Tinggi</option>
+                </select>
+              </div>
+              <div class="col-sm-1">
+                <input type="text" class="form-control" name="kamerabl" id="kamerabl">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label">Kamera depan</label>
+              <div class="col-sm-3">
+                <select class="form-control" name="kameradp_param" id="kameradp_param">
+                  <option>1. Sangat Rendah</option>
+                  <option>2. Rendah</option>
+                  <option>3. Cukup</option>
+                  <option>4. Tinggi</option>
+                  <option>5. Sangat Tinggi</option>
+                </select>
+              </div>
+              <div class="col-sm-1">
+                <input type="text" class="form-control" name="kameradp" id="kameradp">
               </div>
             </div>
             <div class="form-group row">
@@ -167,6 +232,21 @@ include 'components/head.php';
                 <input type="text" class="form-control" name="processor" id="processor">
               </div>
             </div>
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label">Koneksi</label>
+              <div class="col-sm-3">
+                <select class="form-control" name="koneksi_param" id="koneksi_param">
+                  <option>1. Sangat Rendah</option>
+                  <option>2. Rendah</option>
+                  <option>3. Cukup</option>
+                  <option>4. Tinggi</option>
+                  <option>5. Sangat Tinggi</option>
+                </select>
+              </div>
+              <div class="col-sm-1">
+                <input type="text" class="form-control" name="koneksi" id="koneksi">
+              </div>
+            </div>
             
             <div class="form-group row">
               <label class="col-sm-2 col-form-label">Harga</label>
@@ -194,9 +274,13 @@ include 'components/head.php';
             <thead>
               <tr>
                 <th><i class="fa fa-arrow-down"></i> Ram</th>
-                <th><i class="fa fa-arrow-down"></i> Kamera</th>
+                <th><i class="fa fa-arrow-down"></i> Rom</th>
+                <th><i class="fa fa-arrow-down"></i> Layar</th>
+                <th><i class="fa fa-arrow-down"></i> Kamera Belakang</th>
+                <th><i class="fa fa-arrow-down"></i> Kamera Depan</th>
                 <th><i class="fa fa-arrow-down"></i> Baterai</th>
                 <th><i class="fa fa-arrow-down"></i> Processor</th>
+                <th><i class="fa fa-arrow-down"></i> Koneksi</th>
                 <th><i class="fa fa-arrow-down"></i> Harga</th>
                 <th><i class="fa fa-cogs"></i> Aksi</th>
               </tr>
@@ -215,6 +299,10 @@ include 'components/head.php';
                   <td Align="center"><?= $row[3] ?></td>
                   <td Align="center"><?= $row[4] ?></td>
                   <td Align="center"><?= $row[5] ?></td>
+                  <td Align="center"><?= $row[6] ?></td>
+                  <td Align="center"><?= $row[7] ?></td>
+                  <td Align="center"><?= $row[8] ?></td>
+                  <td Align="center"><?= $row[9] ?></td>
                   <td>
                     <div class="btn-group">
                       <a class="btn btn-danger" href="kriteria_hapus.php?id=<?= $row[0] ?>"><i class="fa fa-close"></i></a>

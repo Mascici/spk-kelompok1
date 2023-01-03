@@ -37,16 +37,20 @@ include 'components/head.php';
                         $first_nama = $_GET['nama'];
                         $nama = $_POST['nama'];
                         $ram = $_POST['ram'];
-                        $kamera = $_POST['kamera'];
+                        $rom = $_POST['rom'];
+                        $layar = $_POST['layar'];
+                        $kamerabl = $_POST['kamerabl'];
+                        $kameradp = $_POST['kameradp'];
                         $baterai = $_POST['baterai'];
                         $processor = $_POST['processor'];
+                        $koneksi = $_POST['koneksi'];
                         $harga = $_POST['harga'];
-                        if (($nama == "") or ($ram == "")) {
+                        if (($nama == "") or ($ram == "") or ($rom == "") or ($layar == "") or ($kamerabl == "") or ($kameradp == "") or ($baterai == "") or ($processor == "") or ($koneksi == "") or ($harga == "")) {
                             echo "<script>
                             alert('Tolong lengkapi data yang ada!');
                             </script>";
                         } else {
-                            $sql = "UPDATE saw_aplikasi SET nama='$nama',ram='$ram', kamera='$kamera', baterai='$baterai', processor='$processor', harga='$harga'
+                            $sql = "UPDATE saw_aplikasi SET nama='$nama', ram='$ram', rom='$rom', layar='$layar', kamerabl='$kamerabl', kameradp='$kameradp', baterai='$baterai', processor='$processor', koneksi='$koneksi', harga='$harga'
                                     WHERE nama='$first_nama'";
                             $hasil = $conn->query($sql);
                             if ($hasil) {
@@ -71,13 +75,17 @@ include 'components/head.php';
                             $row = $hasil->fetch_row();
                             $nama = $row[0];
                             $ram = $row[1];
-                            $kamera = $row[2];
-                            $baterai = $row[3];
-                            $processor = $row[4];
-                            $harga = $row[5];
+                            $rom = $row[2];
+                            $layar = $row[3];
+                            $kamerabl = $row[4];
+                            $kameradp = $row[5];
+                            $baterai = $row[6];
+                            $processor = $row[7];
+                            $koneksi = $row[8];
+                            $harga = $row[9];
                         ?>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">Nama HP</label>
+                                <label class="col-sm-2 col-form-label">Nama</label>
                                 <div class="col-sm-5">
                                     <input type="text" class="form-control" name="nama" value="<?= $nama ?>">
                                 </div>
@@ -89,9 +97,27 @@ include 'components/head.php';
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">Kamera</label>
+                                <label class="col-sm-2 col-form-label">ROM</label>
                                 <div class="col-sm-5">
-                                    <input type="text" class="form-control" name="kamera" value="<?= $kamera ?>">
+                                    <input type="text" class="form-control" name="rom" value="<?= $rom ?>">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">layar</label>
+                                <div class="col-sm-5">
+                                    <input type="text" class="form-control" name="layar" value="<?= $layar ?>">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">kamerabl</label>
+                                <div class="col-sm-5">
+                                    <input type="text" class="form-control" name="kamerabl" value="<?= $kamerabl ?>">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">Kameradp</label>
+                                <div class="col-sm-5">
+                                    <input type="text" class="form-control" name="kameradp" value="<?= $kameradp ?>">
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -104,6 +130,12 @@ include 'components/head.php';
                                 <label class="col-sm-2 col-form-label">Processor</label>
                                 <div class="col-sm-5">
                                     <input type="text" class="form-control" name="processor" value="<?= $processor ?>">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">koneksi</label>
+                                <div class="col-sm-5">
+                                    <input type="text" class="form-control" name="koneksi" value="<?= $koneksi ?>">
                                 </div>
                             </div>
                             <div class="form-group row">

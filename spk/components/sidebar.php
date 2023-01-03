@@ -1,5 +1,6 @@
 <nav id="sidebar" class="active">
-    <h1><a href="index.php" class="logo">AC</a></h1>
+    
+    <h3><a href="index.php" class="logo">AMD</a></h3>
     <ul class="list-unstyled components mb-5">
         <li>
             <a href="index.php"><span class="fa fa-user"></span> Alternatif</a>

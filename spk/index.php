@@ -37,9 +37,13 @@ include 'components/head.php';
           if (isset($_POST['submit'])) {
             $nama = $_POST['nama'];
             $ram = $_POST['ram'];
-            $kamera = $_POST['kamera'];
+            $rom = $_POST['rom'];
+            $layar = $_POST['layar'];
+            $kamerabl = $_POST['kamerabl'];
+            $kameradp = $_POST['kameradp'];
             $baterai = $_POST['baterai'];
             $processor = $_POST['processor'];
+            $koneksi = $_POST['koneksi'];
             $harga = $_POST['harga'];
             if (($nama == "") or ($ram == "")) {
               echo "<script>alert('Tolong Lengkapi Data yang Ada!');</script>";
@@ -49,10 +53,10 @@ include 'components/head.php';
               $rows = $hasil->num_rows;
               if ($rows > 0) {
                 $row = $hasil->fetch_row();
-                echo "<script>alert('Aplikasi $nama Sudah Ada!');</script>";
+                echo "<script>alert('Aplikasi $brand Sudah Ada!');</script>";
               } else {
-                $sql = "INSERT INTO saw_aplikasi(nama,ram,kamera,baterai,processor,harga)
-                values ('" . $nama . "','" . $ram . "','" . $kamera . "','" . $baterai . "','" . $processor . "','" . $harga . "')";
+                $sql = "INSERT INTO saw_aplikasi(nama,ram,rom,layar,kamerabl,kameradp,baterai,processor,koneksi,harga)
+                values ('" . $nama . "','" . $ram . "','" . $rom . "','" . $layar . "','" . $kamerabl . "','" . $kameradp . "','" . $baterai . "','" . $processor . "','" . $koneksi . "','" . $harga . "')";
                 $hasil = $conn->query($sql);
                 echo "<script>alert('Data Barhasil diTambahkan!');</script>";
               }
@@ -64,39 +68,63 @@ include 'components/head.php';
           <!--start inputan-->
           <form method="POST" action="">
             <div class="form-group row">
-              <label class="col-sm-2 col-form-label">Nama HP</label>
-              <div class="col-sm-5">
+              <label class="col-sm-2 col-form-label">Nama</label>
+              <div class="col-sm-4">
                 <input type="text" class="form-control" name="nama">
               </div>
             </div>
             <div class="form-group row">
               <label class="col-sm-2 col-form-label">RAM</label>
-              <div class="col-sm-5">
+              <div class="col-sm-4">
                 <input type="text" class="form-control" name="ram">
               </div>
             </div>
             <div class="form-group row">
-              <label class="col-sm-2 col-form-label">Kamera</label>
-              <div class="col-sm-5">
-                <input type="text" class="form-control" name="kamera">
+              <label class="col-sm-2 col-form-label">ROM</label>
+              <div class="col-sm-4">
+                <input type="text" class="form-control" name="rom">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label">Layar</label>
+              <div class="col-sm-4">
+                <input type="text" class="form-control" name="layar">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label">Kamera Belakang</label>
+              <div class="col-sm-4">
+                <input type="text" class="form-control" name="kamerabl">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label">Kamera Depan</label>
+              <div class="col-sm-4">
+                <input type="text" class="form-control" name="kameradp">
               </div>
             </div>
             <div class="form-group row">
               <label class="col-sm-2 col-form-label">Baterai</label>
-              <div class="col-sm-5">
+              <div class="col-sm-4">
                 <input type="text" class="form-control" name="baterai">
               </div>
             </div>
             <div class="form-group row">
               <label class="col-sm-2 col-form-label">Processor</label>
-              <div class="col-sm-5">
+              <div class="col-sm-4">
                 <input type="text" class="form-control" name="processor">
               </div>
             </div>
             <div class="form-group row">
+              <label class="col-sm-2 col-form-label">Koneksi</label>
+              <div class="col-sm-4">
+                <input type="text" class="form-control" name="koneksi">
+              </div>
+            </div>
+            <div class="form-group row">
               <label class="col-sm-2 col-form-label">Harga</label>
-              <div class="col-sm-5">
-                <input type="number" class="form-control" name="harga">
+              <div class="col-sm-4">
+                <input type="text" class="form-control" name="harga">
               </div>
             </div>
     
@@ -108,12 +136,16 @@ include 'components/head.php';
             <thead>
               <tr>
                 <th><i class="fa fa-arrow-down"></i> No</th>
-                <th><i class="fa fa-arrow-down"></i> Nama HP</th>
+                <th><i class="fa fa-arrow-down"></i> Nama</th>
                 <th><i class="fa fa-arrow-down"></i> RAM</th>
-                <th><i class="fa fa-arrow-down"></i> KAMERA</th>
-                <th><i class="fa fa-arrow-down"></i> BATERAI</th>
-                <th><i class="fa fa-arrow-down"></i> PROCESSOR</th>
-                <th><i class="fa fa-arrow-down"></i> HARGA</th>
+                <th><i class="fa fa-arrow-down"></i> ROM</th>
+                <th><i class="fa fa-arrow-down"></i> Layar</th>
+                <th><i class="fa fa-arrow-down"></i> Kamera Belakang</th>
+                <th><i class="fa fa-arrow-down"></i> Kamera Depan</th>
+                <th><i class="fa fa-arrow-down"></i> Baterai</th>
+                <th><i class="fa fa-arrow-down"></i> Processor</th>
+                <th><i class="fa fa-arrow-down"></i> Koneksi</th>
+                <th><i class="fa fa-arrow-down"></i> Harga</th>
                 <th><i class="fa fa-cogs"></i> Aksi</th>
               </tr>
             </thead>
@@ -129,11 +161,15 @@ include 'components/head.php';
                   <tr>
                     <td><?php echo $b = $b + 1; ?></td>
                     <td><?= $row[0] ?></td>
-                    <td><?= $row[1] ?> GB</td>
-                    <td><?= $row[2] ?> MP</td>
-                    <td><?= $row[3] ?> mAh</td>
-                    <td><?= $row[4] ?></td>
-                    <td>Rp. <?= $row[5] ?></td>
+                    <td><?= $row[1] ?>GB</td>
+                    <td><?= $row[2] ?>GB</td>
+                    <td><?= $row[3] ?></td>
+                    <td><?= $row[4] ?>MP</td>
+                    <td><?= $row[5] ?>MP</td>
+                    <td><?= $row[6] ?>mAh</td>
+                    <td><?= $row[7] ?></td>
+                    <td><?= $row[8] ?>G</td>
+                    <td>Rp<?= $row[9] ?></td>
                     <td>
                       <div class="btn-group">
                         <a class="btn btn-success" href="alt_ubah.php?nama=<?= $row[0] ?>"><i class="fa fa-edit"></i></a>

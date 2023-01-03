@@ -6,6 +6,6 @@
             <span class="sr-only">Toggle Menu</span>
         </button>
 
-        <h6 class="nav"> SPK PEMILIHAN APLIKASI EDITOR'S CHOICE DI PLAY STORE |<b>| METODE SAW</b></h6>
+        <h6 class="nav"> SPK PEMILIHAN SMARTPHONE |<b>| METODE SAW</b></h6>
     </div>
 </nav>
